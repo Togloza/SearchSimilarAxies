@@ -12,9 +12,15 @@ import webbrowser
 
 
 while True:
-    url = input("Enter URL: ")
+    url = input("Enter URL, Stop to exit" ": ")
+    
+    if url.lower() == "stop":
+        sys.exit("Code Stopped Successfully")
+    
     text = url.split(sep=('/'))
     axie_id = text[0]
+    
+
     
     if not axie_id.isnumeric():
         axie_id = text[6]
