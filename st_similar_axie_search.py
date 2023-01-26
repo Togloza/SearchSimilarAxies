@@ -42,7 +42,7 @@ url = "https://app.axieinfinity.com/marketplace/axies/"
 if axie_id:
     url = get_axie_data(axie_id)
     st.markdown(f"""
-        <button><a href="{url}" target="_blank">Search Marketplace</a></button>
+        <a href="{url}" target="_blank">Search Marketplace {axie_id}</a>
         """, unsafe_allow_html=True)
         #st.markdown(url, unsafe_allow_html=Truse)
         
