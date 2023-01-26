@@ -1,3 +1,3 @@
-# FindSimilarAxies
-Uses the marketplace URL or Axie ID to search the marketplace for a similar axie
-"# SearchSimilarAxies" 
+# SearchSimilarAxies
+
+Web app to find similar axies on the marketplace from their axie ID
