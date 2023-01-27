@@ -9,6 +9,10 @@ import requests
 import json
 
 
+st.write("If you found this app helpful and would like to donate!")
+st.markdown("ronin:6e4468dcf3c37e713612e62ca9565e2c512c2e1c")
+
+
 def get_axie_data(axie_id):
     payload={}
     headers = {}
@@ -45,7 +49,4 @@ if axie_id:
         <a href="{url}" target="_blank">Search Marketplace {axie_id}</a>
         """, unsafe_allow_html=True)
         #st.markdown(url, unsafe_allow_html=Truse)
-        
-# if st.button("Donate"):
-#    st.markdown("ronin:6e4468dcf3c37e713612e62ca9565e2c512c2e1c")
-    
+
