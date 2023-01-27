@@ -13,7 +13,7 @@ st.write("If you found this app helpful and would like to donate!")
 st.markdown("ronin:6e4468dcf3c37e713612e62ca9565e2c512c2e1c")
 
 
-def get_axie_data(axie_id):
+def get_axie_data(axie_id, filters = set()):
     payload={}
     headers = {}
 
@@ -21,23 +21,27 @@ def get_axie_data(axie_id):
     axie_response = requests.request("GET", axie_url, headers=headers, data=payload)
 
     data = json.loads(axie_response.text)
+    
+    parts = {
+        "horn": data["genes"]["horn"]["d"]["name"].lower().replace(" ", "-").replace("'", ""),
+        "eyes": data["genes"]["eyes"]["d"]["name"].lower().replace(" ", "-").replace("'", ""),
+        "ears": data["genes"]["ears"]["d"]["name"].lower().replace(" ", "-").replace("'", ""),
+        "mouth": data["genes"]["mouth"]["d"]["name"].lower().replace(" ", "-").replace("'", ""),
+        "back": data["genes"]["back"]["d"]["name"].lower().replace(" ", "-").replace("'", ""),
+        "tail": data["genes"]["tail"]["d"]["name"].lower().replace(" ", "-").replace("'", "")
+    }
+    
+    search_parts = [f"parts={part}-{parts[part]}" for part in parts if part.title() not in filters]
+    search_url = f"https://app.axieinfinity.com/marketplace/axies/?partTypes=Tail&auctionTypes=Sale&{'&'.join(search_parts)}"
 
-    horn = data["genes"]["horn"]["d"]["name"].lower().replace(" ", "-").replace("'", "")
-    eyes = data["genes"]["eyes"]["d"]["name"].lower().replace(" ", "-").replace("'", "")
-    ears = data["genes"]["ears"]["d"]["name"].lower().replace(" ", "-").replace("'", "")
-    mouth = data["genes"]["mouth"]["d"]["name"].lower().replace(" ", "-").replace("'", "")
-    back = data["genes"]["back"]["d"]["name"].lower().replace(" ", "-").replace("'", "")
-    tail = data["genes"]["tail"]["d"]["name"].lower().replace(" ", "-").replace("'", "")
-
-    search_url = "https://app.axieinfinity.com/marketplace/axies/?partTypes=Tail&auctionTypes=Sale&parts=horn-" + horn + "&parts=eyes-" + eyes + "&parts=ears-" + ears + "&parts=mouth-" + mouth + "&parts=back-" + back + "&parts=tail-" + tail 
+    
+    search_url = f"https://app.axieinfinity.com/marketplace/axies/?partTypes=Tail&auctionTypes=Sale&{'&'.join(search_parts)}"
     return search_url
 
-#def open_webpage():
-    # st.markdown(url, unsafe_allow_html=False)
-    
+filter_options = ["Horn", "Eyes", "Ears", "Mouth", "Back", "Tail"]
 
-
-
+# Use the multi-select input to allow the user to select multiple filters
+filters = st.sidebar.multiselect("Exclude Parts", filter_options)
 
 
 st.title("Find Similar Axies by ID")
