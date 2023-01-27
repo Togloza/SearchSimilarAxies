@@ -46,6 +46,6 @@ if axie_id:
         """, unsafe_allow_html=True)
         #st.markdown(url, unsafe_allow_html=Truse)
         
-if st.button("Donate"):
-    st.markdown("ronin:6e4468dcf3c37e713612e62ca9565e2c512c2e1c")
+# if st.button("Donate"):
+#    st.markdown("ronin:6e4468dcf3c37e713612e62ca9565e2c512c2e1c")
     
