@@ -48,7 +48,7 @@ st.title("Find Similar Axies by ID")
 axie_id = st.text_input("Enter Axie ID:")
 url = "https://app.axieinfinity.com/marketplace/axies/"
 if axie_id:
-    url = get_axie_data(axie_id)
+    url = get_axie_data(axie_id, filters)
     st.markdown(f"""
         <a href="{url}" target="_blank">Search Marketplace {axie_id}</a>
         """, unsafe_allow_html=True)
