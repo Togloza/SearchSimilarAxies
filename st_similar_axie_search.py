@@ -54,6 +54,6 @@ if axie_id:
         """, unsafe_allow_html=True)
         #st.markdown(url, unsafe_allow_html=Truse)
 
-        
+st.write("Change Log: Added option to exclude parts in the sidebar")        
 st.write("This app is useful for determining an axie's list price based on similar axies on the market. This app removes the need to filter the market by each part individually. Still a work in progress, more functionality to be added soon.")
 
