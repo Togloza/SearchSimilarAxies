@@ -66,10 +66,14 @@ if axie_id:
     st.markdown(f"""
         <a href="{url}" target="_blank">Search Marketplace {axie_id}</a>
         """, unsafe_allow_html=True)
-    st.write("Lowest Priced Axie")
-    st.write(price_data[0])
-    if price_data[0]['id'] != axie_id:
-        st.write("Undercut!")
+    if len(price_data) != 0: 
+        st.write("Lowest Priced Axie")
+        st.write(price_data[0])
+        if price_data[0]['id'] != axie_id:
+            st.write("Undercut!")
+    else:
+        st.write("No similar axies found")
+        
 
         
 st.write("Change Log: Added feature to see if the axie has been undercut on the market")  
