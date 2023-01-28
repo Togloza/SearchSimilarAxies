@@ -38,7 +38,7 @@ def get_axie_data(axie_id, filters = set()):
     search_url = f"https://app.axieinfinity.com/marketplace/axies/?partTypes=Tail&auctionTypes=Sale&{'&'.join(search_parts)}"
     
     
-        ql_endpoint = 'https://graphql-gateway.axieinfinity.com/graphql'
+    ql_endpoint = 'https://graphql-gateway.axieinfinity.com/graphql'
     payload = {"operationName":"GetAxieBriefList","variables":{"from":0,"sort":"PriceAsc","size":24,"auctionType":"Sale","criteria":{"bodyShapes":None,"breedCount":None,"classes":None,"numJapan":None,"numMystic":None,"numShiny":None,"numSummer":None,"numXmas":None,"parts":['horn-' + parts['horn'],'eyes-' + parts['eyes'],'ears-' + parts['ears'], 'mouth-' + parts['mouth'], 'back-' + parts['back'], 'tail-' + parts['tail']],"ppAquatic":None,"ppBeast":None,"ppBird":None,"ppBug":None,"ppDawn":None,"ppDusk":None,"ppMech":None,"ppPlant":None,"ppReptile":None,"pureness":None,"purity":None,"stages":None,"title":None}},"query":"query GetAxieBriefList($auctionType: AuctionType, $criteria: AxieSearchCriteria, $from: Int, $sort: SortBy, $size: Int, $owner: String) {\n axies(\n auctionType: $auctionType\n criteria: $criteria\n from: $from\n sort: $sort\n size: $size\n owner: $owner\n ) {\n total\n results {\n ...AxieBrief\n __typename\n }\n __typename\n }\n}\n\nfragment AxieBrief on Axie {\n id\n name\n stage\n class\n breedCount\n image\n title\n genes\n newGenes\n battleInfo {\n banned\n __typename\n }\n order {\n id\n currentPrice\n currentPriceUsd\n __typename\n }\n parts {\n id\n name\n class\n type\n specialGenes\n __typename\n }\n __typename\n}\n"}
     response = requests.post(ql_endpoint, json=payload)
     
