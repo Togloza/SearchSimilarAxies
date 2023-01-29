@@ -11,6 +11,8 @@ import json
 
 st.write("If you found this app helpful and would like to donate!")
 st.markdown("ronin:6e4468dcf3c37e713612e62ca9565e2c512c2e1c")
+st.write("If you are unable to donate, consider using my marketplace referral code!")
+st.write("Referral Code: VWP3JJKF")
 
 
 def get_axie_data(axie_id, filters = set()):
