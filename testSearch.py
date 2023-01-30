@@ -135,7 +135,8 @@ if axie_id:
     # If there are axies in the marketplace then provide show the lowest priced axie and if the input axie id is the lowest price      
     if len(price_data) != 0: 
         st.write("Lowest Priced Axie")
-        st.write(price_data[0])
+        st.write("ID: " + price_data[0]['id'])
+        st.write("Price: " + price_data[0]['price'])
         if price_data[0]['id'] != axie_id:
             st.write("**Undercut!**")
     else:
