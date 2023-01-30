@@ -70,7 +70,14 @@ def get_price_data(parts, filters = set()):
         print('Error:', response.status_code)
     return price_data
     
+ def multi_select(multi_axie_input):
+    multi_axie = multi_axie_input.split(", ")
     
+    price_list = {axie: get_axie_data(axie)[1][0] if get_axie_data(axie)[1] else {'id': '-1', 'price': '-1'} for axie in multi_axie}
+    undercut_axies = [axie for axie in price_list if axie != price_list[axie]['id'] and price_list[axie]['id'] != "-1"]
+    return price_list, undercut_axies 
+
+
 
 filter_options = ["Horn", "Eyes", "Ears", "Mouth", "Back", "Tail"]
 
@@ -109,25 +116,23 @@ if axie_id:
     else:
         st.write("No similar axies found")
         
-        
-        
-        
 
 
 if st.checkbox("Multi Axie Select"):
-    multi_axie_input = st.text_input("Input Multiple Ids in CSV format", key = "multiselect")
-    multi_axie = multi_axie_input.split(", ")
-    
-    price_list = {axie: get_axie_data(axie)[1][0] if get_axie_data(axie)[1] else {'id': '-1', 'price': '-1'} for axie in multi_axie}
-    
-    undercut_axies = [axie for axie in price_list if axie != price_list[axie]['id'] and price_list[axie]['id'] != "-1"]
-    
-    for axie in undercut_axies:
-        st.write(axie, "Cheaper Axies Available")
-        _url, dummy = get_url(axie)
-        st.markdown(f"""
+
+        multi_axie_input = st.text_input("Input Multiple Ids in CSV format", key = "multiselect")
+        if multi_axie_input:
+            price_list, undercut_axies = multi_select(multi_axie_input)
+            
+            for axie in undercut_axies:
+                st.write(axie, "Cheaper Axies Available")
+                _url, dummy = get_url(axie)
+                st.markdown(f"""
                     <a href="{_url}" target="_blank">Search Marketplace {axie}</a>
-                    """, unsafe_allow_html=True)
+                    """, unsafe_allow_html=True)           
+            
+
+
         
         
         
