@@ -119,12 +119,12 @@ url = "https://app.axieinfinity.com/marketplace/axies/"
 
 st.sidebar.title("**Tools**")
 
-
+axie_id = False
 if st.sidebar.checkbox("**Axie Select**"):
     st.write("Enter Axie ID:")
     axie_id = st.text_input("ID", key = "singleselect")
     filters = st.multiselect("Exclude Parts", filter_options)
-axie_id = False
+
 
 # If the axie id field has an input grab the data and provide a link to the appropriate page
 if axie_id:
