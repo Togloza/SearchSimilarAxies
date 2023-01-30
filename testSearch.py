@@ -168,7 +168,28 @@ if st.sidebar.checkbox("**Get Axie IDs**", key = "axieids"):
             st.write(str(item) + ",")
         st.write(str(last))
             
+       
+        
+# Help box
+if st.sidebar.checkbox("Help"):
+    st.sidebar.write("Enter an axie id in the box")
+    st.sidebar.write("The app provides a link to the marketplace for axies with the same parts as the entered axie")
+    st.sidebar.write("It also shows if there is a lower priced axie on the market than the on entered")
 
+# Multiselect Help Box
+if st.sidebar.checkbox("Multiselect Help"):
+     st.sidebar.write("Save axie ids in text file to copy paste easily")
+     st.sidebar.write("Example: 2346183, 2597247, 4866741, 3279037")
+     
+if st.sidebar.checkbox("User ID Help"):
+    st.sidebar.write("Find your User ID by Loading the Game and Clicking on your Portrat")
+     
+        
+if st.button("Change Log"):
+    st.write("Change Log: Integrated undercut feature with filters")         
+    st.write("Change Log: Added feature to see if the axie has been undercut on the market. Note: Not yet integrated with filters")  
+    st.write("Change Log: Added option to exclude parts in the sidebar")        
+    st.write("This app is useful for determining an axie's list price based on similar axies on the market. This app removes the need to filter the market by each part individually. Still a work in progress, more functionality to be added soon.")
     
 if st.button("Change Log"):
     st.write("Change Log: Added Caching and reformatted")
