@@ -122,11 +122,13 @@ if axie_id:
         <a href="{url}" target="_blank">Search Marketplace {axie_id}</a>
         """, unsafe_allow_html=True)
     # If there are axies in the marketplace then provide show the lowest priced axie and if the input axie id is the lowest price      
-    if len(price_data) != 0: 
-        st.write("Lowest Priced Axie")
-        st.write(price_data[0])
+    if len(price_data) != 0:
         if price_data[0]['id'] != axie_id:
             st.write("Undercut!")
+        st.write("Lowest Priced Axie")
+        st.write("ID: ", price_data[0][0])
+        st.write("Price: ", price_data[0][1])
+
     else:
         st.write("No similar axies found")
         
