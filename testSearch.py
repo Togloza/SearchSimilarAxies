@@ -8,11 +8,17 @@ Created on Fri Jan 27 19:20:43 2023
 import streamlit as st
 import requests
 import json
+import time
+
+# This app allows users to search for Axie data using a specific Axie ID. 
+# It also provides a donate button using the ronin cryptocurrency.
 
 
 st.write("If you found this app helpful and would like to donate!")
 st.markdown("ronin:6e4468dcf3c37e713612e62ca9565e2c512c2e1c")
 
+
+# This function takes an Axie ID and a set of filters as input
 def get_axie_data(axie_id, filters = set()):
        
     search_url, parts = get_url(axie_id, filters)
@@ -69,22 +75,25 @@ def get_price_data(parts, filters = set()):
     else:
         print('Error:', response.status_code)
     return price_data
+
     
- def multi_select(multi_axie_input):
+def multi_select(multi_axie_input):
     multi_axie = multi_axie_input.split(", ")
     
     price_list = {axie: get_axie_data(axie)[1][0] if get_axie_data(axie)[1] else {'id': '-1', 'price': '-1'} for axie in multi_axie}
     undercut_axies = [axie for axie in price_list if axie != price_list[axie]['id'] and price_list[axie]['id'] != "-1"]
     return price_list, undercut_axies 
-
-
+    
+    
+    
+undercut_axies = []
 
 filter_options = ["Horn", "Eyes", "Ears", "Mouth", "Back", "Tail"]
 
 # Use the multi-select input to allow the user to select multiple filters
 filters = st.sidebar.multiselect("Exclude Parts", filter_options)
 
-
+# Help box
 if st.sidebar.checkbox("Help"):
     st.sidebar.write("Enter an axie id in the box")
     st.sidebar.write("The app provides a link to the marketplace for axies with the same parts as the entered axie")
@@ -95,19 +104,21 @@ if st.sidebar.checkbox("Multiselect Help"):
      st.sidebar.write("Save axie ids in text file to copy paste easily")
      st.sidebar.write("Example: 2346183, 2597247, 4866741, 3279037")
      
-     
-     
-     
 
-
+     
+# Input box to put in the axie id
 st.title("Find Similar Axies by ID")
-axie_id = st.text_input("Enter Axie ID:")
+st.subheader("Enter Axie ID:")
+axie_id = st.text_input("", key = "singleselect")
 url = "https://app.axieinfinity.com/marketplace/axies/"
+
+# If the axie id field has an input grab the data and provide a link to the appropriate page
 if axie_id:
     url, price_data = get_axie_data(axie_id, filters)
     st.markdown(f"""
         <a href="{url}" target="_blank">Search Marketplace {axie_id}</a>
         """, unsafe_allow_html=True)
+    # If there are axies in the marketplace then provide show the lowest priced axie and if the input axie id is the lowest price      
     if len(price_data) != 0: 
         st.write("Lowest Priced Axie")
         st.write(price_data[0])
@@ -116,7 +127,7 @@ if axie_id:
     else:
         st.write("No similar axies found")
         
-
+        
 
 if st.checkbox("Multi Axie Select"):
 
@@ -133,8 +144,6 @@ if st.checkbox("Multi Axie Select"):
             
 
 
-        
-        
         
 if st.button("Change Log"):
     st.write("Change Log: Integrated undercut feature with filters")         
