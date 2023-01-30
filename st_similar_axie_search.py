@@ -126,8 +126,7 @@ if axie_id:
         if price_data[0]['id'] != axie_id:
             st.write("Undercut!")
         st.write("Lowest Priced Axie")
-        st.write("ID: ", price_data[0][0])
-        st.write("Price: ", price_data[0][1])
+        st.write("ID: ", price_data[0])
 
     else:
         st.write("No similar axies found")
