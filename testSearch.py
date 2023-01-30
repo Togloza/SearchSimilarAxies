@@ -184,14 +184,8 @@ if st.sidebar.checkbox("Multiselect Help"):
 if st.sidebar.checkbox("User ID Help"):
     st.sidebar.write("Find your User ID by Loading the Game and Clicking on your Portrat")
      
-        
+
 if st.button("Change Log", key = "changelog"):
-    st.write("Change Log: Integrated undercut feature with filters")         
-    st.write("Change Log: Added feature to see if the axie has been undercut on the market. Note: Not yet integrated with filters")  
-    st.write("Change Log: Added option to exclude parts in the sidebar")        
-    st.write("This app is useful for determining an axie's list price based on similar axies on the market. This app removes the need to filter the market by each part individually. Still a work in progress, more functionality to be added soon.")
-    
-if st.button("Change Log"):
     st.write("Change Log: Added Caching and reformatted")
     st.write("Change Log: Integrated undercut feature with filters")         
     st.write("Change Log: Added feature to see if the axie has been undercut on the market. Note: Not yet integrated with filters")  
