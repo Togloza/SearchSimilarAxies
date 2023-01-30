@@ -190,6 +190,8 @@ if st.sidebar.checkbox("User ID Help"):
      
 
 if st.button("Change Log", key = "changelog"):
+    st.button("Close", key = "closelog"):
+       pass
     st.write("Change Log: Added Get User IDs feature to facilitate Multi Axie Select")
     st.write("Change Log: Fixed several bugs")
     st.write("Change Log: Added Caching and reformatted")
@@ -197,3 +199,4 @@ if st.button("Change Log", key = "changelog"):
     st.write("Change Log: Added feature to see if the axie has been undercut on the market. Note: Not yet integrated with filters")  
     st.write("Change Log: Added option to exclude parts in the sidebar")        
     st.write("This app is useful for determining an axie's list price based on similar axies on the market. This app removes the need to filter the market by each part individually. Still a work in progress, more functionality to be added soon.")
+       
