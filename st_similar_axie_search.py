@@ -147,6 +147,7 @@ if axie_id:
 if st.sidebar.checkbox("**Multi Axie Select**"):
         multi_axie_input = st.text_input("Input Multiple IDs in CSV Format", key = "multiselect")
         st.write("Note: If the input IDs are not on sale they will register as being undercut, working on fix")
+        st.write("Note: If you don't have a list of your axie IDs, try "Get Axie IDs")
         if multi_axie_input:
             price_list, undercut_axies = multi_select(multi_axie_input)
             if undercut_axies:
@@ -162,6 +163,7 @@ if st.sidebar.checkbox("**Multi Axie Select**"):
 if st.sidebar.checkbox("**Get Axie IDs**", key = "axieids"):
     address = st.text_input("Input Axie User ID")
     limit = st.text_input("Input Max Number of Axies")
+    st.write("Note: If you are having trouble, use the "User ID Help")
     if address and limit:
         address_list = get_axies_from_address(address, limit)
         address_list_copy = address_list
