@@ -128,19 +128,21 @@ if axie_id:
         st.write("No similar axies found")
         
         
-
 if st.checkbox("Multi Axie Select"):
 
         multi_axie_input = st.text_input("Input Multiple Ids in CSV format", key = "multiselect")
         if multi_axie_input:
             price_list, undercut_axies = multi_select(multi_axie_input)
+            if undercut_axies:
+                for axie in undercut_axies:
+                    st.write(axie, "Cheaper Axies Available")
+                    _url, dummy = get_url(axie)
+                    st.markdown(f"""
+                        <a href="{_url}" target="_blank">Search Marketplace {axie}</a>
+                        """, unsafe_allow_html=True)
+            else:
+                st.write("All Axies Cheapest On Market")
             
-            for axie in undercut_axies:
-                st.write(axie, "Cheaper Axies Available")
-                _url, dummy = get_url(axie)
-                st.markdown(f"""
-                    <a href="{_url}" target="_blank">Search Marketplace {axie}</a>
-                    """, unsafe_allow_html=True)           
             
 
 
