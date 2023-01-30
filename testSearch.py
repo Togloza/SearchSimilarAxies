@@ -124,7 +124,7 @@ if st.checkbox("Multi Axie Select"):
     
     for axie in undercut_axies:
         st.write(axie, "Cheaper Axies Available")
-        _url = get_url(axie)
+        _url, dummy = get_url(axie)
         st.markdown(f"""
                     <a href="{_url}" target="_blank">Search Marketplace {axie}</a>
                     """, unsafe_allow_html=True)
