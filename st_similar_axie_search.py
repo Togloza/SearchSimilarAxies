@@ -9,6 +9,10 @@ import requests
 import json
 
 
+# This app allows users to search for Axie data using a specific Axie ID. 
+# It also provides a donate button using the ronin cryptocurrency.
+
+
 st.write("If you found this app helpful and would like to donate!")
 st.markdown("ronin:6e4468dcf3c37e713612e62ca9565e2c512c2e1c")
 st.write("If you are unable to donate, consider using my marketplace referral code!")
@@ -108,7 +112,7 @@ if st.sidebar.checkbox("Multiselect Help"):
 # Input box to put in the axie id
 st.title("Find Similar Axies by ID")
 st.subheader("Enter Axie ID:")
-axie_id = st.text_input("", key = "singleselect")
+axie_id = st.text_input("ID", key = "singleselect")
 url = "https://app.axieinfinity.com/marketplace/axies/"
 
 # If the axie id field has an input grab the data and provide a link to the appropriate page
@@ -127,6 +131,7 @@ if axie_id:
         st.write("No similar axies found")
         
         
+
 if st.checkbox("Multi Axie Select"):
 
         multi_axie_input = st.text_input("Input Multiple Ids in CSV format", key = "multiselect")
@@ -142,11 +147,11 @@ if st.checkbox("Multi Axie Select"):
             else:
                 st.write("All Axies Cheapest On Market")
             
-            
 
 
         
 if st.button("Change Log"):
+    st.write("Change Log: Added multiaxie search")
     st.write("Change Log: Integrated undercut feature with filters")         
     st.write("Change Log: Added feature to see if the axie has been undercut on the market. Note: Not yet integrated with filters")  
     st.write("Change Log: Added option to exclude parts in the sidebar")        
