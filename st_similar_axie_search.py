@@ -190,8 +190,6 @@ if st.sidebar.checkbox("User ID Help"):
      
 
 if st.button("Change Log", key = "changelog"):
-    st.button("Close", key = "closelog"):
-       pass
     st.write("Change Log: Added Get User IDs feature to facilitate Multi Axie Select")
     st.write("Change Log: Fixed several bugs")
     st.write("Change Log: Added Caching and reformatted")
