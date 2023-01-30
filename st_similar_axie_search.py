@@ -112,7 +112,7 @@ if st.sidebar.checkbox("Multiselect Help"):
 # Input box to put in the axie id
 st.title("Find Similar Axies by ID")
 st.subheader("Enter Axie ID:")
-axie_id = st.text_input("ID", key = "singleselect")
+axie_id = st.text_input("ID Field:", key = "singleselect")
 url = "https://app.axieinfinity.com/marketplace/axies/"
 
 # If the axie id field has an input grab the data and provide a link to the appropriate page
@@ -151,7 +151,7 @@ if st.checkbox("Multi Axie Select"):
 
         
 if st.button("Change Log"):
-    st.write("Change Log: Added multiaxie search")
+    st.write("Change Log: Added multi-axie search. Filters do not work with multi-axie search Note: May take a sec")
     st.write("Change Log: Integrated undercut feature with filters")         
     st.write("Change Log: Added feature to see if the axie has been undercut on the market. Note: Not yet integrated with filters")  
     st.write("Change Log: Added option to exclude parts in the sidebar")        
