@@ -146,7 +146,7 @@ if st.checkbox("Multi Axie Select"):
             
 
 
-        
+st.write(st.secrets["api_key"])      
 if st.button("Change Log"):
     st.write("Change Log: Integrated undercut feature with filters")         
     st.write("Change Log: Added feature to see if the axie has been undercut on the market. Note: Not yet integrated with filters")  
