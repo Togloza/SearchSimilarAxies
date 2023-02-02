@@ -80,7 +80,7 @@ def get_price_data(parts, filters = set()):
     return price_data
 
 # Takes a list of IDs in CSV format to find if they are the cheapest on the market
-@st.experimental_memo    
+
 def multi_select(multi_axie_input):
     multi_axie = multi_axie_input.split(",")
     multi_axie = [item.strip() for item in multi_axie]
