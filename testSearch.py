@@ -49,7 +49,7 @@ def get_url(axie_id, filters = set()):
         "ears": data["genes"]["ears"]["d"]["name"].lower().replace(" ", "-").replace("'", ""),
         "mouth": data["genes"]["mouth"]["d"]["name"].lower().replace(" ", "-").replace("'", ""),
         "back": data["genes"]["back"]["d"]["name"].lower().replace(" ", "-").replace("'", ""),
-        "tail": data["genes"]["tail"]["d"]["name"].lower().replace(" ", "-").replace("'", "")
+        "tail": data["genes"]["tail"]["d"]["name"].lower().replace(" ", "-").replace("'", ""),
         "class": data['genes']['cls'].capitalize()
     }
     
