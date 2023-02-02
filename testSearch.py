@@ -50,11 +50,12 @@ def get_url(axie_id, filters = set()):
         "mouth": data["genes"]["mouth"]["d"]["name"].lower().replace(" ", "-").replace("'", ""),
         "back": data["genes"]["back"]["d"]["name"].lower().replace(" ", "-").replace("'", ""),
         "tail": data["genes"]["tail"]["d"]["name"].lower().replace(" ", "-").replace("'", "")
+        "class": data['genes']['cls'].capitalize()
     }
     
     # Create a search URL based on the filters provided
     search_parts = [f"parts={part}-{parts[part]}" for part in parts if part.title() not in filters]
-    search_url = f"https://app.axieinfinity.com/marketplace/axies/?partTypes=Tail&auctionTypes=Sale&{'&'.join(search_parts)}"
+    search_url = f"https://app.axieinfinity.com/marketplace/axies/?partTypes=Tail&auctionTypes=Sale&{'&'.join(search_parts)}" + "&classes=" + str(parts["class"])
     return search_url, parts
 
 # Gets the price info using GraphQL and the parts variable from get_url
@@ -66,7 +67,7 @@ def get_price_data(parts, filters = set()):
     # Format the data to be put into the graphql payload
     part_ql_inject = [item['Parts'] for item in ql_combined if item['Filter'] not in filters]
     
-    payload = {"operationName":"GetAxieBriefList","variables":{"from":0,"sort":"PriceAsc","size":24,"auctionType":"Sale","criteria":{"bodyShapes":None,"breedCount":None,"classes":None,"numJapan":None,"numMystic":None,"numShiny":None,"numSummer":None,"numXmas":None,"parts":part_ql_inject ,"ppAquatic":None,"ppBeast":None,"ppBird":None,"ppBug":None,"ppDawn":None,"ppDusk":None,"ppMech":None,"ppPlant":None,"ppReptile":None,"pureness":None,"purity":None,"stages":None,"title":None}},"query":"query GetAxieBriefList($auctionType: AuctionType, $criteria: AxieSearchCriteria, $from: Int, $sort: SortBy, $size: Int, $owner: String) {\n axies(\n auctionType: $auctionType\n criteria: $criteria\n from: $from\n sort: $sort\n size: $size\n owner: $owner\n ) {\n total\n results {\n ...AxieBrief\n __typename\n }\n __typename\n }\n}\n\nfragment AxieBrief on Axie {\n id\n name\n stage\n class\n breedCount\n image\n title\n genes\n newGenes\n battleInfo {\n banned\n __typename\n }\n order {\n id\n currentPrice\n currentPriceUsd\n __typename\n }\n parts {\n id\n name\n class\n type\n specialGenes\n __typename\n }\n __typename\n}\n"}
+    payload = {"operationName":"GetAxieBriefList","variables":{"from":0,"sort":"PriceAsc","size":24,"auctionType":"Sale","criteria":{"bodyShapes":None,"breedCount":None,"classes":parts["class"],"numJapan":None,"numMystic":None,"numShiny":None,"numSummer":None,"numXmas":None,"parts":part_ql_inject ,"ppAquatic":None,"ppBeast":None,"ppBird":None,"ppBug":None,"ppDawn":None,"ppDusk":None,"ppMech":None,"ppPlant":None,"ppReptile":None,"pureness":None,"purity":None,"stages":None,"title":None}},"query":"query GetAxieBriefList($auctionType: AuctionType, $criteria: AxieSearchCriteria, $from: Int, $sort: SortBy, $size: Int, $owner: String) {\n axies(\n auctionType: $auctionType\n criteria: $criteria\n from: $from\n sort: $sort\n size: $size\n owner: $owner\n ) {\n total\n results {\n ...AxieBrief\n __typename\n }\n __typename\n }\n}\n\nfragment AxieBrief on Axie {\n id\n name\n stage\n class\n breedCount\n image\n title\n genes\n newGenes\n battleInfo {\n banned\n __typename\n }\n order {\n id\n currentPrice\n currentPriceUsd\n __typename\n }\n parts {\n id\n name\n class\n type\n specialGenes\n __typename\n }\n __typename\n}\n"}
     response = requests.post(ql_endpoint, json=payload)
     # If the request is successful gather the axie id and price of the axies into price_data 
     if response.status_code == 200:
