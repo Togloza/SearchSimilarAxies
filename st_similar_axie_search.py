@@ -147,8 +147,8 @@ if axie_id:
 if st.sidebar.checkbox("**Multi Axie Select**"):
         multi_axie_input = st.text_input("Input Multiple IDs in CSV Format", key = "multiselect")
         if multi_axie_input:
-        st.write("Note: If the input IDs are not on sale they will register as being undercut, working on fix")
-        st.write("Note: If you don't have a list of your axie IDs, try Get Axie IDs")
+            st.write("Note: If the input IDs are not on sale they will register as being undercut, working on fix")
+            st.write("Note: If you don't have a list of your axie IDs, try Get Axie IDs")
             price_list, undercut_axies = multi_select(multi_axie_input)
             if undercut_axies:
                 for axie in undercut_axies:
