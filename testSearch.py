@@ -152,6 +152,7 @@ if st.sidebar.checkbox("**Multi Axie Select**"):
             if undercut_axies:
                 for axie in undercut_axies:
                     st.write(axie, "Cheaper Axies Available")
+                    st.write(price_list[axie])
                     _url, dummy = get_url(axie)
                     st.markdown(f"""
                         <a href="{_url}" target="_blank">Search Marketplace {axie}</a>
