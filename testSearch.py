@@ -30,7 +30,7 @@ def check_input(_input, check_method = 0):
         else:
             return "Input Error 001"
     if check_method == 1:
-        _input = str(_input).replace(",","").replace("#", "").strip()
+        _input = str(_input).replace(",","").replace(".","").replace("#", "").strip()
         if _input.isnumeric():
             return _input
         else:
