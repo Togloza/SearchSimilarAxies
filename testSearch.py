@@ -101,7 +101,7 @@ def get_price_data(parts, filters = set()):
 def multi_select(multi_axie_input):
     multi_axie = multi_axie_input.split(",")
     multi_axie = [item.strip() for item in multi_axie]
-    multi_axie = [check_input(item, 1) for item in multi_axie]
+    multi_axie = [check_input(item, 1) for item in multi_axie if item]
     price_list = {axie: get_axie_data(axie)[1][0] if get_axie_data(axie)[1] else {'id': axie, 'price': '0'} for axie in multi_axie}
     undercut_axies = [axie for axie in price_list if axie != price_list[axie]['id'] and price_list[axie]['price'] != "0"]
     return price_list, undercut_axies 
