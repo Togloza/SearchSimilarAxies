@@ -21,6 +21,22 @@ st.write("Referral Code: VWP3JJKF")
 st.write("If you have feedback or want to request a feature, Email: searchaxies@gmail.com")
 
 
+def check_input(_input, check_method = 0):
+    if check_method == 0:
+        _input = str(_input).replace("#","").strip()
+        if _input.isnumeric():
+            return _input
+        else:
+            return "Input Error 001"
+    if check_method == 1:
+        _input = str(_input).replace(",","").replace(".","").replace("#", "").strip()
+        if _input.isnumeric():
+            return _input
+        else:
+            return "Input Error 002"
+        
+    return "0"
+
 # This function takes an Axie ID and a set of filters as input
 def get_axie_data(axie_id, filters = set()):
        
@@ -83,6 +99,7 @@ def get_price_data(parts, filters = set()):
 def multi_select(multi_axie_input):
     multi_axie = multi_axie_input.split(",")
     multi_axie = [item.strip() for item in multi_axie]
+    multi_axie = [check_input(item, 1) for item in multi_axie if item]
     price_list = {axie: get_axie_data(axie)[1][0] if get_axie_data(axie)[1] else {'id': axie, 'price': '0'} for axie in multi_axie}
     undercut_axies = [axie for axie in price_list if axie != price_list[axie]['id'] and price_list[axie]['id'] != "0"]
     return price_list, undercut_axies 
@@ -123,6 +140,7 @@ axie_id = False
 if st.sidebar.checkbox("**Axie Select**"):
     st.write("Enter Axie ID:")
     axie_id = st.text_input("ID", key = "singleselect")
+    axie_id = check_input(axie_id, 0)
     filters = st.multiselect("Exclude Parts", filter_options)
 
 
@@ -191,6 +209,7 @@ if st.sidebar.checkbox("User ID Help"):
      
 
 if st.button("Change Log", key = "changelog"):
+    st.write("Change Log: Improved handling of inputs")
     st.write("Change Log: Added Get User IDs feature to facilitate Multi Axie Select")
     st.write("Change Log: Fixed several bugs")
     st.write("Change Log: Added Caching and reformatted")
