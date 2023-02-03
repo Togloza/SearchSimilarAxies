@@ -139,13 +139,13 @@ st.sidebar.title("**Tools**")
 axie_id = False
 if st.sidebar.checkbox("**Axie Select**"):
     st.write("Enter Axie ID:")
-    axie_id = st.text_input("ID", key = "singleselect")
-    axie_id = check_input(axie_id, 0)
+    axie_id = st.text_input("ID", key = "singleselect")    
     filters = st.multiselect("Exclude Parts", filter_options)
 
 
 # If the axie id field has an input grab the data and provide a link to the appropriate page
 if axie_id:
+    axie_id = check_input(axie_id, 0)
     url, price_data = get_axie_data(axie_id, filters)
     st.markdown(f"""
         <a href="{url}" target="_blank">Search Marketplace {axie_id}</a>
