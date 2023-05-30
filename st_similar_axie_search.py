@@ -214,7 +214,9 @@ if st.sidebar.checkbox("**Multi Axie Select**"):
                 st.write(axie, "Cheaper Axies Available")
                 st.image(axie_images[int(axie)], width=200)
                 st.write("Lower Axie ID: ", price_list[axie]['id'])
-                st.write("Price: ", float(
+                st.write("Price USD: ",
+                    price_list[axie]['price'])
+                st.write("Price Eth: ", float(
                     price_list[axie]['price']) / eth_price)
                 _url, dummy = get_url(axie)
                 st.markdown(f"""
